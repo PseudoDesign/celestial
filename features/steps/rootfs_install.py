@@ -1,11 +1,9 @@
 from behave import *
-
 import celestial.client.rootfs
 from features import utils
 import filecmp
 import celestial
 from celestial.strings import Filesystems
-import os
 
 
 @given(u'a rootfs file formatted with {rootfs_format}')
@@ -35,14 +33,8 @@ def step_impl(context, rootfs_format):
 
 @when(u'we invoke celestial_rootfs_install')
 def step_impl(context):
-    if not hasattr(context, 'target_device_node'):
-        node = '/dev/null'
-    else:
-        node = context.target_device_node
-    if not hasattr(context, 'expected_rootfs_format'):
-        expected_rootfs_format = None
-    else:
-        expected_rootfs_format = context.expected_rootfs_format
+    node = getattr(context, 'target_device_node', '/dev/null')
+    expected_rootfs_format = getattr(context, 'expected_rootfs_format', None)
     try:
         context.celestial_rootfs_install_result = celestial.client.rootfs.install(
             rootfs_file=context.rootfs_file,

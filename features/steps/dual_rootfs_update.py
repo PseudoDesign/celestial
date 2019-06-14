@@ -1,6 +1,7 @@
 from behave import *
 import celestial.client.rootfs
 from features import utils
+import os
 
 use_step_matcher("re")
 
@@ -17,6 +18,7 @@ def step_impl(context, dev1, dev2):
         context.rootfs_device_node_2 = utils.make_device_node(dev2)
     else:
         context.rootfs_device_node_2 = context.rootfs_device_node_1
+    context.rootfs_device_node_dir = os.path.dirname(context.rootfs_device_node_1)
 
 
 @when("we update the dual boot rootfs")
