@@ -3,7 +3,7 @@ Feature: celestial_client_deploy
   Tests for the celestial client deploy container
 
   Scenario Outline: test dual_rootfs_update
-    Given the sample deploy_config file test_deploy.conf
+    Given the sample deploy_config file test_config.yml
     And the sample cmdline file mmcblk0p1
     And a rootfs file formatted with ext3
     And the boot rootfs device is set to <boot_device_node>

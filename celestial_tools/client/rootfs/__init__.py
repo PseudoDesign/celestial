@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-from celestial.strings import Filesystems
-from celestial.client.system import cmdline
+from celestial_tools.strings import Filesystems
+from celestial_tools.client.system import cmdline
 
 
 def get_fs_types(path):

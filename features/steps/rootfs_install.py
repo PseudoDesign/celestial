@@ -1,9 +1,9 @@
 from behave import *
-import celestial.client.rootfs
+import celestial_tools.client.rootfs
 from features import utils
 import filecmp
-import celestial
-from celestial.strings import Filesystems
+import celestial_tools
+from celestial_tools.strings import Filesystems
 
 
 @given(u'a rootfs file formatted with {rootfs_format}')
@@ -36,7 +36,7 @@ def step_impl(context):
     node = getattr(context, 'target_device_node', '/dev/null')
     expected_rootfs_format = getattr(context, 'expected_rootfs_format', None)
     try:
-        context.celestial_rootfs_install_result = celestial.client.rootfs.install(
+        context.celestial_rootfs_install_result = celestial_tools.client.rootfs.install(
             rootfs_file=context.rootfs_file,
             device_node=node,
             expected_fs=expected_rootfs_format

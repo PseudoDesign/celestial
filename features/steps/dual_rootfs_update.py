@@ -1,5 +1,5 @@
 from behave import *
-import celestial.client.rootfs
+import celestial_tools.client.rootfs
 from features import utils
 import os
 
@@ -27,7 +27,7 @@ def step_impl(context):
     :type context: behave.runner.Context
     """
     try:
-        context.dual_boot_update_result = celestial.client.rootfs.dual_boot_update(
+        context.dual_boot_update_result = celestial_tools.client.rootfs.dual_boot_update(
             rootfs_file=context.rootfs_file,
             dev_1=context.rootfs_device_node_1,
             dev_2=context.rootfs_device_node_2,
@@ -45,7 +45,7 @@ def step_impl(context, boot_device):
     :type context: behave.runner.Context
     :type boot_device: str
     """
-    celestial.client.rootfs.set_boot_device(
+    celestial_tools.client.rootfs.set_boot_device(
         utils.prepend_temp_dir(boot_device),
         cmdline_file=context.sample_cmdline_file
     )

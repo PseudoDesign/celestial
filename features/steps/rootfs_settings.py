@@ -1,5 +1,5 @@
 from behave import *
-import celestial
+import celestial_tools
 from features import utils
 
 
@@ -10,7 +10,7 @@ def step_impl(context, new_rootfs_device):
 
 @when("we update the boot rootfs device in the cmdline file")
 def step_impl(context):
-    celestial.client.rootfs.set_boot_device(
+    celestial_tools.client.rootfs.set_boot_device(
         context.new_rootfs_device,
         cmdline_file=context.sample_cmdline_file
     )
@@ -21,7 +21,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.boot_rootfs_device_result = celestial.client.rootfs.get_boot_device(
+    context.boot_rootfs_device_result = celestial_tools.client.rootfs.get_boot_device(
         cmdline_file=context.sample_cmdline_file
     )
 
