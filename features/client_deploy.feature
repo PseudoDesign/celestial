@@ -8,7 +8,7 @@ Feature: celestial_client_deploy
     And a rootfs file formatted with ext3
     And the boot rootfs device is set to <boot_device_node>
     And the rootfs device nodes are named mmcblk0p1 and mmcblk0p2
-    When we run the rootfs_update console script
+    When we run the rootfs_update.sh console script
     Then the rootfs file is burned into <expected_device_node>
     And the reported boot rootfs device is <expected_device_node>
 

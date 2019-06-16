@@ -6,12 +6,12 @@ import os
 use_step_matcher("re")
 
 
-@when("we run the rootfs_update console script")
+@when("we run the rootfs_update.sh console script")
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    script = os.path.join(utils.SCRIPTS_DIR, "rootfs_update")
+    script = os.path.join(utils.SCRIPTS_DIR, "rootfs_update.sh")
     try:
         context.celestial_rootfs_install_result = subprocess.run([
             "/bin/bash",
