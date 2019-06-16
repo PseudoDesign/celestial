@@ -18,9 +18,10 @@ def step_impl(context):
             "-c",
             script +
             ' --deploy_config {}'.format(context.sample_deploy_config_file) +
-            ' --cmdline {}'.format(context.sample_cmdline_file) +
-            ' --dev {}'.format(context.rootfs_device_node_dir) +
+            ' --cmdline_file {}'.format(context.sample_cmdline_file) +
+            ' --dev_directory {}'.format(context.rootfs_device_node_dir) +
             ' --fs_format {}'.format(context.rootfs_format) +
+            ' --help '
             " " + context.rootfs_file,
         ])
     except ValueError as e:
