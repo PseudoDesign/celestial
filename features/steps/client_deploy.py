@@ -14,6 +14,7 @@ def step_impl(context):
     script = os.path.join(utils.SCRIPTS_DIR, "rootfs_update")
     try:
         context.celestial_rootfs_install_result = subprocess.run([
+            "/bin/bash",
             script,
             '--deploy_config {}'.format(context.sample_deploy_config_file),
             '--cmdline {}'.format(context.sample_cmdline_file),
