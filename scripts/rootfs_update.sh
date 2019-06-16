@@ -1,10 +1,13 @@
 #!/bin/bash
 echo 1
 PARAMS=""
+
 while (( "$#" )); do
+  echo "derp"
   case "$1" in
-    -f|--flag-with-argument)
-      FARG=$2
+    -c|--deploy_config)
+      DEPLOY_CONFIG=$2
+      echo $DEPLOY_CONFIG
       shift 2
       ;;
     --) # end argument parsing
