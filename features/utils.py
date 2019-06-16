@@ -31,6 +31,21 @@ def copy_file_to_temp(path, target_subpath=""):
     return target_path
 
 
+def make_random_file(filepath, file_size_kb):
+    """
+    Create a random file of size file_size_KB at filepath
+    """
+    assert not os.path.isfile(filepath)
+    # Create a file of size fs_size_KB
+    retval = subprocess.run([
+        'dd',
+        "if=/dev/random",
+        "of={}".format(filepath),
+        "bs=1K",
+        "count={}".format(file_size_kb)
+        ])
+    assert retval.returncode == 0
+
 def make_zero_file(filepath, file_size_kb):
     """
     Create a zeroed out file of size file_size_KB at filepath
@@ -55,7 +70,7 @@ def make_device_node(
     Create a fake device node of size node_size_KB at the given filename
     """
     filepath = os.path.join(TEMP_DIRECTORY, filename)
-    make_zero_file(filepath, node_size_kb)
+    make_random_file(filepath, node_size_kb)
     return filepath
 
 
