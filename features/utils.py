@@ -5,6 +5,7 @@ import shutil
 
 LOCAL_DIR = os.path.dirname(os.path.realpath(__file__))
 TEMP_DIRECTORY = os.path.join(LOCAL_DIR, "..", "..", ".tmp")
+SCRIPTS_DIR = os.path.join(LOCAL_DIR, "..", "scripts")
 
 
 def set_up():
