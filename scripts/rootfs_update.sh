@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 PARAMS=()
 
 DEFAULT_DEPLOY_CONFIG="/etc/celestial/deploy_config.yml"
