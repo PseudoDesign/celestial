@@ -16,3 +16,13 @@ Feature: celestial_client_deploy
     | boot_device_node | expected_device_node |
     | mmcblk0p1        | mmcblk0p2            |
     | mmcblk0p2        | mmcblk0p1            |
+
+  Scenario Outline: print help when given incorrect number of parameters
+    When we run the rootfs_update.sh console script with <num_params> random parameters
+    And the rootfs_update.sh script exits with return code 22
+
+    Examples:
+    | num_params |
+    | 0          |
+    | 2          |
+    | 3          |

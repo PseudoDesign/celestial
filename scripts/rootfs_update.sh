@@ -13,7 +13,7 @@ DEV_DIRECTORY=${DEFAULT_DEV_DIRECTORY}
 print_help () {
     echo "Celestial dual-rootfs update"
     echo "  Usage:"
-    echo "      $0 [Options] rootfs_file"
+    echo "    $0 [Options] rootfs_file"
     echo "  Parameters:"
     echo "    rootfs_file             -   the rootfs file to be installed"
     echo "  Options:"
@@ -22,7 +22,6 @@ print_help () {
     echo "    -fs --fs_format         -   enforce the provided filesystem format"
     echo "    -d --dev_directory      -   the directory containing the device nodes, default is $DEFAULT_DEV_DIRECTORY"
     echo "    -h --help               -   display this help message"
-
 }
 
 while (( "$#" )); do
@@ -57,7 +56,7 @@ while (( "$#" )); do
       exit 1
       ;;
     *) # preserve positional arguments
-      PARAMS=("$1")
+      PARAMS+=("$1")
       shift
       ;;
   esac
@@ -65,5 +64,5 @@ done
 
 if [[ "${#PARAMS[@]}" -ne "1" ]]; then
     print_help
-    exit 1
+    exit 22
 fi
