@@ -69,3 +69,4 @@ if [[ "${#PARAMS[@]}" -ne "1" ]]; then
     print_help
     exit 22
 fi
+

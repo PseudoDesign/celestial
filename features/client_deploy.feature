@@ -17,7 +17,7 @@ Feature: celestial_client_deploy
     | mmcblk0p1        | mmcblk0p2            |
     | mmcblk0p2        | mmcblk0p1            |
 
-  Scenario Outline: print help when given incorrect number of parameters
+  Scenario Outline: dual_rootfs prints help when given incorrect number of parameters
     When we run the rootfs_update.sh console script with <num_params> random parameters
     And the rootfs_update.sh script exits with return code 22
 
