@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Setup Testing Environment
           command: |
-            pip install 'coverage' --user
+            pip install 'coverage'
       - run:
           command: |
             coverage -m run behave
