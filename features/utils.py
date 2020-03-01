@@ -39,7 +39,7 @@ def make_random_file(filepath, file_size_kb):
     # Create a file of size fs_size_KB
     retval = subprocess.run([
         'dd',
-        "if=/dev/random",
+        "if=/dev/urandom",
         "of={}".format(filepath),
         "bs=1K",
         "count={}".format(file_size_kb)
