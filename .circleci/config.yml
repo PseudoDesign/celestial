@@ -23,13 +23,13 @@ jobs:
       - run:
           name: Setup Testing Environment
           command: |
-            pip install 'coverage'
+            pip install coverage codecov
       - run:
-          command: |
-            coverage run -m behave
-          name: Behave Tests
-      - codecov/upload:
-          file: .coverage
+          command: coverage run -m behave
+          name: Behave Tests with Coverage
+      - run:
+          command: codecov
+          name: Upload Tests to CodeCov
 
 
 workflows:
