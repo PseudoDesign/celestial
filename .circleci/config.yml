@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ./manage.py test
+          command: behave
           name: Test
 
 workflows:
