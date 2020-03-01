@@ -1,4 +1,6 @@
 version: '2'
 services:
     client:
-        build: client/dev.Dockerfile
+        build:
+            context: ./client
+            dockerfile: dev.Dockerfile
