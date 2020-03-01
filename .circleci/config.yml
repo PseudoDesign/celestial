@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  codecov: codecov/codecov@1.0.5
 
 jobs:
   behave_tests:
@@ -13,8 +14,25 @@ jobs:
       - run:
           command: behave
           name: Behave Tests
+  behave_tests_with_coverage:
+    docker:
+      - image: pseudodesign/celestial-dev:0.0.2
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: Setup Testing Environment
+          command: |
+            pip install coverage codecov
+      - run:
+          command: coverage run -m behave
+          name: Behave Tests with Coverage
+      - run:
+          command: codecov
+          name: Upload Tests to CodeCov
+
 
 workflows:
   main:
     jobs:
-      - behave_tests
+      - behave_tests_with_coverage
