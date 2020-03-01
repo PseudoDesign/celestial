@@ -46,6 +46,7 @@ def make_random_file(filepath, file_size_kb):
         ])
     assert retval.returncode == 0
 
+
 def make_zero_file(filepath, file_size_kb):
     """
     Create a zeroed out file of size file_size_KB at filepath
