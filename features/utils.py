@@ -64,7 +64,7 @@ def make_zero_file(filepath, file_size_kb):
 
 def make_device_node(
     filename="test_node",
-    node_size_kb=100
+    node_size_kb=10
 ):
     """
     Create a fake device node of size node_size_KB at the given filename
@@ -97,7 +97,7 @@ def make_ext(revision, filepath, fs_size_kb):
 
 def make_ext2(
     filename="test_ext2.ext2",
-    fs_size_kb=100
+    fs_size_kb=10
 ):
     """
     Creates a file with an ext3 partition of size fs_size
@@ -109,7 +109,7 @@ def make_ext2(
 
 def make_ext3(
     filename="test_ext3.ext3",
-    fs_size_kb=100
+    fs_size_kb=10
 ):
     """
     Creates a file with an ext3 partition of size fs_size
@@ -120,7 +120,7 @@ def make_ext3(
 
 def make_ext4(
     filename="test_ext4.ext4",
-    fs_size_kb=100
+    fs_size_kb=10
 ):
     """
     Creates a file with an ext4 partition of size fs_size
