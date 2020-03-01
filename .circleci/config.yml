@@ -16,21 +16,21 @@ jobs:
   behave_tests_with_coverage:
     docker:
       - image: pseudodesign/celestial-dev:0.0.1
-      executor: python/default
-      steps:
-        - checkout
-        - run:
-            name: Setup Testing Environment
-            command: |
-              pip install 'coverage' --user
-        - run:
-            command: |
-              coverage -m run behave
-              coverage report
-              coverage html
-            name: Behave Tests
-        - store_artifacts:
-            path: htmlcov
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: Setup Testing Environment
+          command: |
+            pip install 'coverage' --user
+      - run:
+          command: |
+            coverage -m run behave
+            coverage report
+            coverage html
+          name: Behave Tests
+      - store_artifacts:
+          path: htmlcov
 
 workflows:
   main:
