@@ -27,8 +27,6 @@ jobs:
       - run:
           command: |
             coverage run -m behave
-            coverage report
-            coverage html
           name: Behave Tests
       - codecov/upload:
           file: .coverage
