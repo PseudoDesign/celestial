@@ -16,7 +16,7 @@ jobs:
           name: Behave Tests
   behave_tests_with_coverage:
     docker:
-      - image: pseudodesign/celestial-dev:0.0.1
+      - image: pseudodesign/celestial-dev:0.0.2
     executor: python/default
     steps:
       - checkout
