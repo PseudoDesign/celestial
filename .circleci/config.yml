@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
+  behave_tests:
     docker:
       - image: pseudodesign/celestial-dev:0.0.1
     executor: python/default
@@ -12,9 +12,9 @@ jobs:
       - checkout
       - run:
           command: behave
-          name: Test
+          name: Behave Tests
 
 workflows:
   main:
     jobs:
-      - build-and-test
+      - behave_tests
