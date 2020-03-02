@@ -1,0 +1,18 @@
+dist: bionic
+language: python
+addons:
+  apt:
+    packages:
+      - e2fsprogs dosfstools
+
+before_install:
+  - travis_retry pip install coverage codecov behave
+
+install:
+  - travis_retry pip install ".[test]"
+
+script:
+  - coverage run -m behave
+
+after_success:
+  - codecov
