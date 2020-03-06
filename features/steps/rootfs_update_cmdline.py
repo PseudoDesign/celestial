@@ -12,6 +12,7 @@ def step_impl(context):
         "--format", context.rootfs_format,
         "--node1", context.rootfs_device_node_1,
         "--node2", context.rootfs_device_node_2,
+        context.rootfs_file
     ]
     context.rootfs_update_retval = dual_rootfs_update_cmdline(args)
 

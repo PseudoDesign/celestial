@@ -20,7 +20,7 @@ def dual_rootfs_update_cmdline(args: [str]) -> int:
     parser.add_argument("new_rootfs", help="the new rootfs to install")
     parsed_args = parser.parse_args(args)
     rootfs.dual_boot_update(
-        parser.new_rootfs, parsed_args.node1, parsed_args.node2, parsed_args.cmdline, parsed_args.format
+        parsed_args.new_rootfs, parsed_args.node1, parsed_args.node2, parsed_args.cmdline, parsed_args.format
     )
 
     return 0
