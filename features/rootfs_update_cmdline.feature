@@ -10,6 +10,7 @@ Feature: Celestial rootfs update cmdline
     When the rootfs_update command line script is run
     Then the rootfs file is burned into <expected_device_node>
     And the reported boot rootfs device is <expected_device_node>
+    And the rootfs_update command line script returns 0
 
     Examples:
     | boot_device_node | expected_device_node |
