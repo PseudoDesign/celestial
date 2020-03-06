@@ -15,3 +15,4 @@ Feature: Celestial rootfs update cmdline
     | boot_device_node | expected_device_node |
     | mmcblk0p1        | mmcblk0p2            |
     | mmcblk0p2        | mmcblk0p1            |
+
