@@ -1,16 +1,7 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@0.2.1
-
 jobs:
-  behave_tests_with_coverage:
-    docker:
-      - image: circleci/python:3.8
-      - image: circleci/python:3.7
-      - image: circleci/python:3.6
-      - image: circleci/python:3.5
-    executor: python/default
+  python_behave_template: &python_behave_template
     steps:
       - checkout
       - run:
@@ -25,8 +16,28 @@ jobs:
       - run:
           command: codecov
           name: Upload Tests to CodeCov
+  python_behave_3.5:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.5
+  python_behave_3.6:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.6
+  python_behave_3.7:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.7
+  python_behave_3.8:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.8
+
 
 workflows:
   main:
     jobs:
-      - behave_tests_with_coverage
+      - python_behave_3.5
+      - python_behave_3.6
+      - python_behave_3.7
+      - python_behave_3.8
