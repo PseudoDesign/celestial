@@ -9,6 +9,9 @@ jobs:
   behave_tests_with_coverage:
     docker:
       - image: circleci/python:3.8
+      - image: circleci/python:3.7
+      - image: circleci/python:3.6
+      - image: circleci/python:3.5
     executor: python/default
     steps:
       - checkout
