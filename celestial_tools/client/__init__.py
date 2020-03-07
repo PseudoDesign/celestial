@@ -7,7 +7,7 @@ def dual_rootfs_update(args: [str]) -> int:
     """
     Runs a commandline program for updating a dual rootfs
 
-    :type args: an array of strings dictating the commandline parameters
+    :param args: an array of strings dictating the commandline parameters
 
     :return: 0 on success, else a linux error code
     """
