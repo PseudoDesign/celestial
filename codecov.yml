@@ -1,3 +1,5 @@
-# Ignore test directories from the CI reports
+# Exclude test directories, setup file, and cmdline scripts from the test reports
 ignore:
   - "features"
+  - "setup.py"
+  - "celestial_tools/client/dual_rootfs_update_cmdline.py"

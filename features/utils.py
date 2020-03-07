@@ -101,7 +101,7 @@ def make_ext2(
     fs_size_kb=100
 ):
     """
-    Creates a file with an ext3 partition of size fs_size
+    Creates a file with an ext2 partition of size fs_size
     :return:
     """
     filepath = os.path.join(TEMP_DIRECTORY, filename)
