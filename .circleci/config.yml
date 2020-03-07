@@ -1,7 +1,9 @@
 version: 2.1
 
 jobs:
-  python_behave_template: &python_behave_template
+  python_behave: &python_behave_template
+    docker:
+      - image: circleci/python
     steps:
       - checkout
       - run:
