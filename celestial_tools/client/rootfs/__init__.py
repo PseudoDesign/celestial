@@ -28,7 +28,7 @@ def get_fs_types(path):
     return retval
 
 
-def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE) -> int:
+def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE):
     """
     Install rootfs_file into device_node
     """

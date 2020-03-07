@@ -51,7 +51,7 @@ def get_parameters(cmdline_file: str) -> dict:
     return parameters
 
 
-def get_parameter(parameter_name: str, cmdline_file: str) -> dict:
+def get_parameter(parameter_name: str, cmdline_file: str) -> str:
     """
     Retrieve a parameter from the provided cmdline file
 
@@ -60,7 +60,7 @@ def get_parameter(parameter_name: str, cmdline_file: str) -> dict:
     :return {key: value}:
     """
     parameters = get_parameters(cmdline_file)
-    if "root" in parameters:
+    if parameter_name in parameters:
         return parameters[parameter_name]
     return None
 
