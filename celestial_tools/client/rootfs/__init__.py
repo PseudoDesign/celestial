@@ -61,11 +61,11 @@ def get_boot_device(cmdline_file="/proc/cmdline") -> str:
     return cmdline.get_parameter("root", cmdline_file)
 
 
-def set_boot_device(boot_device, cmdline_file="/boot/cmdline"):
+def set_boot_device(boot_device: str, cmdline_file: str = "/boot/cmdline"):
     """
     Update the "root" parameter of the "cmdline_file" to "boot_device"
 
-    :param boot_device:
+    :param boot_device: The location of the new boot device node
     :param cmdline_file:  The location of the boot partition's commandline file
     """
     cmdline.set_parameter("root", boot_device, cmdline_file)
