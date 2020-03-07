@@ -1,5 +1,5 @@
 from behave import *
-from celestial_tools.client.dual_rootfs_update import dual_rootfs_update
+from celestial_tools.client import dual_rootfs_update
 
 
 @when("the rootfs_update command line script is run")
