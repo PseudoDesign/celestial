@@ -18,19 +18,19 @@ jobs:
       - run:
           command: codecov
           name: Upload Tests to CodeCov
-  python_behave_3.5:
+  python_behave_35:
     <<: *python_behave_template
     docker:
       - image: circleci/python:3.5
-  python_behave_3.6:
+  python_behave_36:
     <<: *python_behave_template
     docker:
       - image: circleci/python:3.6
-  python_behave_3.7:
+  python_behave_37:
     <<: *python_behave_template
     docker:
       - image: circleci/python:3.7
-  python_behave_3.8:
+  python_behave_38:
     <<: *python_behave_template
     docker:
       - image: circleci/python:3.8
@@ -39,7 +39,7 @@ jobs:
 workflows:
   main:
     jobs:
-      - python_behave_3.5
-      - python_behave_3.6
-      - python_behave_3.7
-      - python_behave_3.8
+      - python_behave_35
+      - python_behave_36
+      - python_behave_37
+      - python_behave_38
