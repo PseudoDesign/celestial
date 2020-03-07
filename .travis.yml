@@ -14,7 +14,7 @@ before_install:
   - travis_retry pip install coverage codecov behave
 
 install:
-  - travis_retry pip install ".[test, docs]"
+  - travis_retry pip install ".[test] .[docs]"
   -
 jobs:
   include:
