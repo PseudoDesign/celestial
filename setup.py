@@ -38,6 +38,7 @@ setup(
     install_requires=[],
     extras_require={
         'test': ['coverage', 'behave'],
+        'docs': ['sphinx'],
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
