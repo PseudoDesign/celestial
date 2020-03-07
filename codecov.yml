@@ -9,11 +9,4 @@ coverage:
     project:
       default:
         # basic
-        target: auto
         threshold: 1%
-        base: auto
-        flags:
-          - unit
-        paths:
-          - "src"
-        if_ci_failed: error
