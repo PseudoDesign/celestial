@@ -20,5 +20,11 @@ script:
   - coverage run -m behave
   - make -C docs html
 
+jobs:
+  include:
+    - stage: Documentation
+      install: travis_retry pip install ".[docs]"
+      script: make -C docs html
+
 after_success:
   - codecov
