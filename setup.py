@@ -11,15 +11,15 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 # Fields marked as "Optional" may be commented out.
 
 setup(
-    name='celestial_tools',  # Required
-    version='0.0.1',  # Required
+    name='celestial_tools',
+    version='0.0.1',
     description='A collection of tools for managing and debugging embedded software',  # Optional
-    long_description=long_description,  # Optional
-    long_description_content_type='text/markdown',  # Optional (see note above)
-    url='https://github.com/pseudodesign/celestial',  # Optional
-    author='PseudoDesign',  # Optional
-    author_email='info@pseudo.design',  # Optional
-    classifiers=[  # Optional
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/pseudodesign/celestial',
+    author='PseudoDesign',
+    author_email='info@pseudo.design',
+    classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha
         #   4 - Beta
@@ -33,18 +33,18 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    packages=["celestial_tools"],  # Required
+    packages=["celestial_tools"],
     python_requires='>=3.5',
-    install_requires=[],  # Optional
-    extras_require={  # Optional
+    install_requires=[],
+    extras_require={
         'test': ['coverage', 'behave'],
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    package_data={  # Optional
+    package_data={
 
     },
-    entry_points={  # Optional
+    entry_points={
         'console_scripts': [
             'celestial_dual_rootfs_update=github_log_dump.pr_dump:cmdline',
         ],
