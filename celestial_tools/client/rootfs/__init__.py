@@ -36,7 +36,6 @@ def install(rootfs_file: str, device_node: str, block_size_kb: int = 10, expecte
     :param device_node: Device node where the new rootfs_file will be installed
     :param block_size_kb: Block size passed to **dd** utility
     :param expected_fs: Expected filesystem format
-    :return:
     """
     if expected_fs is not None:
         fs_types = get_fs_types(rootfs_file)
@@ -50,7 +49,6 @@ def install(rootfs_file: str, device_node: str, block_size_kb: int = 10, expecte
     ])
     if result.returncode != 0:
         raise RuntimeError("Failed to update {} with {}".format(device_node, rootfs_file))
-    return result
 
 
 def get_boot_device(cmdline_file="/proc/cmdline") -> str:
@@ -81,7 +79,6 @@ def dual_boot_update(rootfs_file, dev_1, dev_2, cmdline_file="/boot/cmdline", ex
     :param cmdline_file: The location of the boot partition's commandline file
     :param dev_1: the first rootfs device node in the dual-boot configuration
     :param dev_2: the second rootfs device node in the dual-boot configuration
-    :return:
     """
     if dev_1 == dev_2:
         raise ValueError("Boot devices cannot be identical")
