@@ -7,5 +7,6 @@ This content is made primarily using the
 `automodule <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_ plugin.
 
 .. toctree::
+    :maxdepth: 1
 
     celestial_tools/index
