@@ -18,10 +18,6 @@ celestial_tools Commandline Scripts
 
 .. autofunction:: celestial_tools.client.dual_rootfs_update_cmdline.dual_rootfs_update_cmdline
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
 Indices and tables
 ==================
 
