@@ -32,7 +32,6 @@ jobs:
           command: codecov
           name: Upload Tests to CodeCov
 
-
 workflows:
   main:
     jobs:
