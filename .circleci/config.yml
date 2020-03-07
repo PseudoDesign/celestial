@@ -11,7 +11,7 @@ jobs:
           command: pip install coverage codecov behave
       - run:
           name: Install Package
-          command: pip install .[test,docs]
+          command: pip install .[test]
       - run:
           command: coverage run -m behave
           name: Behave Tests with Coverage
@@ -20,20 +20,34 @@ jobs:
           name: Upload Tests to CodeCov
   python_behave_35:
     <<: *python_behave_template
+    name: Python 3.5 Behave Tests
     docker:
       - image: circleci/python:3.5
   python_behave_36:
     <<: *python_behave_template
+    name: Python 3.6 Behave Tests
     docker:
       - image: circleci/python:3.6
   python_behave_37:
     <<: *python_behave_template
+    name: Python 3.7 Behave Tests
     docker:
       - image: circleci/python:3.7
   python_behave_38:
     <<: *python_behave_template
+    name: Python 3.8 Behave Tests
     docker:
       - image: circleci/python:3.8
+  documentation:
+    docker:
+      - image: circleci/python
+    steps:
+      - run:
+          name: Install Package
+          command: pip install .[docs]
+      - run:
+          command: make -C docs html
+          name: Build Documention with Sphinx
 
 
 workflows:
@@ -43,3 +57,4 @@ workflows:
       - python_behave_36
       - python_behave_37
       - python_behave_38
+      - documentation
