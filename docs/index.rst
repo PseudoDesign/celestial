@@ -1,18 +1,10 @@
-Welcome to celestial_tools's documentation!
+===========================================
+Celestial Documentation Page
 ===========================================
 
-.. automodule:: celestial_tools
-    :members:
+This is the root page for the `Celestial <https://github.com/PseudoDesign/celestial>`_ project documentation
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    python/index
