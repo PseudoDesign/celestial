@@ -14,10 +14,11 @@ before_install:
   - travis_retry pip install coverage codecov behave
 
 install:
-  - travis_retry pip install ".[test]"
+  - travis_retry pip install ".[test, docs]"
 
 script:
   - coverage run -m behave
+  - make -C docs html
 
 after_success:
   - codecov
