@@ -57,7 +57,7 @@ def get_parameter(parameter_name: str, cmdline_file: str) -> str:
 
     :param parameter_name: The "key" to get from the cmdline file
     :param cmdline_file: The **kernel's** cmdline file
-    :return {key: value}:
+    :return: {key: value}
     """
     parameters = get_parameters(cmdline_file)
     if parameter_name in parameters:
