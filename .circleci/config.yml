@@ -1,0 +1,57 @@
+version: 2.1
+
+jobs:
+  python_behave: &python_behave_template
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - run:
+          name: Setup Testing Environment
+          command: pip install coverage codecov behave
+      - run:
+          name: Install Package
+          command: pip install .[test]
+      - run:
+          command: coverage run -m behave
+          name: Behave Tests with Coverage
+      - run:
+          command: codecov
+          name: Upload Tests to CodeCov
+  Python_3_5:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.5
+  Python_3_6:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.6
+  Python_3_7:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.7
+  Python_3_8:
+    <<: *python_behave_template
+    docker:
+      - image: circleci/python:3.8
+  Documentation:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - run:
+          name: Install Package
+          command: pip install .[docs]
+      - run:
+          command: make -C docs html
+          name: Build Documention with Sphinx
+
+
+workflows:
+  main:
+    jobs:
+      - Python_3_5
+      - Python_3_6
+      - Python_3_7
+      - Python_3_8
+      - Documentation
