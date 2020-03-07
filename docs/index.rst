@@ -1,13 +1,13 @@
-Welcome to celestial_tools's documentation!
+celestial_tools Documentation Page
 ===========================================
-
-.. automodule:: celestial_tools
-    :members:
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+.. automodule:: celestial_tools
+
+.. automodule:: celestial_tools.client
 
 
 Indices and tables
