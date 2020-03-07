@@ -6,7 +6,7 @@ This is the root page for the `Celestial <https://github.com/PseudoDesign/celest
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
     python/index
 
+..
