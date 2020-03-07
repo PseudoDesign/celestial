@@ -5,17 +5,17 @@ from celestial_tools.strings import Filesystems
 from celestial_tools.client.system import cmdline
 
 
-def get_fs_types(path):
+def get_fs_types(device_node: str):
     """
     Fetch a list of possible filesystem types
 
-    :param path:
+    :param device_node: The device node to query
     :return: a list of strings with the possible filesystem type, else None
     """
-    if not os.path.exists(path):
+    if not os.path.exists(device_node):
         return None
     output = subprocess.check_output(
-        ['''(eval $(blkid {} | awk ' {{ print $3 }} '); echo $TYPE)'''.format(path)],
+        ['''(eval $(blkid {} | awk ' {{ print $3 }} '); echo $TYPE)'''.format(device_node)],
         shell=True,
         executable='/bin/bash').decode().rstrip()
     if output == "":
@@ -28,9 +28,15 @@ def get_fs_types(path):
     return retval
 
 
-def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE):
+def install(rootfs_file: str, device_node: str, block_size_kb: int = 10, expected_fs: str = Filesystems.NONE):
     """
     Install rootfs_file into device_node
+
+    :param rootfs_file: Location of the new rootfs to install
+    :param device_node: Device node where the new rootfs_file will be installed
+    :param block_size_kb: Block size passed to **dd** utility
+    :param expected_fs: Expected filesystem format
+    :return:
     """
     if expected_fs is not None:
         fs_types = get_fs_types(rootfs_file)
