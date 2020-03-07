@@ -51,7 +51,7 @@ def install(rootfs_file: str, device_node: str, block_size_kb: int = 10, expecte
         raise RuntimeError("Failed to update {} with {}".format(device_node, rootfs_file))
 
 
-def get_boot_device(cmdline_file="/proc/cmdline") -> str:
+def get_boot_device(cmdline_file: str = "/proc/cmdline") -> str:
     """
     Retrieve the "root" parameter of "/proc/cmdline"
 
@@ -71,7 +71,11 @@ def set_boot_device(boot_device: str, cmdline_file: str = "/boot/cmdline"):
     cmdline.set_parameter("root", boot_device, cmdline_file)
 
 
-def dual_boot_update(rootfs_file, dev_1, dev_2, cmdline_file="/boot/cmdline", expected_rootfs_format=None):
+def dual_boot_update(rootfs_file: str,
+                     dev_1: str,
+                     dev_2: str,
+                     cmdline_file: str = "/boot/cmdline",
+                     expected_rootfs_format: str = None):
     """
 
     :param rootfs_file: The filesystem to be installed
