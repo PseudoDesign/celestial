@@ -77,6 +77,7 @@ def dual_boot_update(rootfs_file: str,
                      cmdline_file: str = "/boot/cmdline",
                      expected_rootfs_format: str = None):
     """
+    Update the dual-rootfs system with the provided parameters
 
     :param rootfs_file: The filesystem to be installed
     :param expected_rootfs_format: The expected rootfs format
