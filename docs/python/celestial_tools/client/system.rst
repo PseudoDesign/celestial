@@ -2,5 +2,14 @@
 celestial_tools.client.system Python Module Documentation
 =======================================
 
-.. automodule:: celestial_tools.client.rootfs
+Core
+=====
+
+.. automodule:: celestial_tools.client.system
+    :members:
+
+Commandline Parameter Manipulation
+======
+
+.. automodule:: celestial_tools.client.system.cmdline
     :members:

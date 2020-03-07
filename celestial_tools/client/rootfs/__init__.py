@@ -5,16 +5,17 @@ from celestial_tools.strings import Filesystems
 from celestial_tools.client.system import cmdline
 
 
-def get_fs_types(path):
+def get_fs_types(device_node: str):
     """
     Fetch a list of possible filesystem types
-    :param path:
+
+    :param device_node: The device node to query
     :return: a list of strings with the possible filesystem type, else None
     """
-    if not os.path.exists(path):
+    if not os.path.exists(device_node):
         return None
     output = subprocess.check_output(
-        ['''(eval $(blkid {} | awk ' {{ print $3 }} '); echo $TYPE)'''.format(path)],
+        ['''(eval $(blkid {} | awk ' {{ print $3 }} '); echo $TYPE)'''.format(device_node)],
         shell=True,
         executable='/bin/bash').decode().rstrip()
     if output == "":
@@ -27,9 +28,14 @@ def get_fs_types(path):
     return retval
 
 
-def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE):
+def install(rootfs_file: str, device_node: str, block_size_kb: int = 10, expected_fs: str = Filesystems.NONE):
     """
     Install rootfs_file into device_node
+
+    :param rootfs_file: Location of the new rootfs to install
+    :param device_node: Device node where the new rootfs_file will be installed
+    :param block_size_kb: Block size passed to **dd** utility
+    :param expected_fs: Expected filesystem format
     """
     if expected_fs is not None:
         fs_types = get_fs_types(rootfs_file)
@@ -43,37 +49,41 @@ def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.
     ])
     if result.returncode != 0:
         raise RuntimeError("Failed to update {} with {}".format(device_node, rootfs_file))
-    return result
 
 
-def get_boot_device(cmdline_file="/proc/cmdline"):
+def get_boot_device(cmdline_file: str = "/proc/cmdline") -> str:
     """
     Retrieve the "root" parameter of "/proc/cmdline"
+
     :param cmdline_file: The location of the cmdline file (that we booted with)
-    :return:
+    :return: the "root" parameter of "/proc/cmdline"
     """
     return cmdline.get_parameter("root", cmdline_file)
 
 
-def set_boot_device(boot_device, cmdline_file="/boot/cmdline"):
+def set_boot_device(boot_device: str, cmdline_file: str = "/boot/cmdline"):
     """
     Update the "root" parameter of the "cmdline_file" to "boot_device"
-    :param boot_device:
+
+    :param boot_device: The location of the new boot device node
     :param cmdline_file:  The location of the boot partition's commandline file
-    :return:
     """
     cmdline.set_parameter("root", boot_device, cmdline_file)
 
 
-def dual_boot_update(rootfs_file, dev_1, dev_2, cmdline_file="/boot/cmdline", expected_rootfs_format=None):
+def dual_boot_update(rootfs_file: str,
+                     dev_1: str,
+                     dev_2: str,
+                     cmdline_file: str = "/boot/cmdline",
+                     expected_rootfs_format: str = None):
     """
+    Update the dual-rootfs system with the provided parameters
 
     :param rootfs_file: The filesystem to be installed
     :param expected_rootfs_format: The expected rootfs format
     :param cmdline_file: The location of the boot partition's commandline file
     :param dev_1: the first rootfs device node in the dual-boot configuration
     :param dev_2: the second rootfs device node in the dual-boot configuration
-    :return:
     """
     if dev_1 == dev_2:
         raise ValueError("Boot devices cannot be identical")
