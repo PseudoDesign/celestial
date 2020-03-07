@@ -6,8 +6,10 @@ celestial_tools Documentation Page
    :caption: Contents:
 
 .. automodule:: celestial_tools
+    :members:
 
 .. automodule:: celestial_tools.client
+    :members:
 
 
 Indices and tables
