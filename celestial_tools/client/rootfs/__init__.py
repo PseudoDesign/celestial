@@ -8,6 +8,7 @@ from celestial_tools.client.system import cmdline
 def get_fs_types(path):
     """
     Fetch a list of possible filesystem types
+
     :param path:
     :return: a list of strings with the possible filesystem type, else None
     """
@@ -27,7 +28,7 @@ def get_fs_types(path):
     return retval
 
 
-def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE):
+def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.NONE) -> int:
     """
     Install rootfs_file into device_node
     """
@@ -46,11 +47,12 @@ def install(rootfs_file, device_node, block_size_kb=10, expected_fs=Filesystems.
     return result
 
 
-def get_boot_device(cmdline_file="/proc/cmdline"):
+def get_boot_device(cmdline_file="/proc/cmdline") -> str:
     """
     Retrieve the "root" parameter of "/proc/cmdline"
+
     :param cmdline_file: The location of the cmdline file (that we booted with)
-    :return:
+    :return: the "root" parameter of "/proc/cmdline"
     """
     return cmdline.get_parameter("root", cmdline_file)
 
@@ -58,9 +60,9 @@ def get_boot_device(cmdline_file="/proc/cmdline"):
 def set_boot_device(boot_device, cmdline_file="/boot/cmdline"):
     """
     Update the "root" parameter of the "cmdline_file" to "boot_device"
+
     :param boot_device:
     :param cmdline_file:  The location of the boot partition's commandline file
-    :return:
     """
     cmdline.set_parameter("root", boot_device, cmdline_file)
 
