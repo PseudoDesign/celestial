@@ -46,7 +46,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'celestial_dual_rootfs_update=github_log_dump.pr_dump:cmdline',
+            'celestial_dual_rootfs_update=celestial_tools.client.dual_rootfs_update:dual_rootfs_update_cmdline',
         ],
     },
 
