@@ -3,3 +3,17 @@ ignore:
   - "features"
   - "setup.py"
   - "celestial_tools/client/dual_rootfs_update_cmdline.py"
+
+coverage:
+  status:
+    project:
+      default:
+        # basic
+        target: auto
+        threshold: 1%
+        base: auto
+        flags:
+          - unit
+        paths:
+          - "src"
+        if_ci_failed: error
