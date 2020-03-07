@@ -1,3 +1,4 @@
-# Ignore test directories from the CI reports
+# Exclude test directories and setup file from the CI reports
 ignore:
   - "features"
+  - "setup.py"
