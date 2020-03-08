@@ -64,7 +64,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    packages=find_packages(where="celestial_tools"),
+    packages=find_packages(),
     python_requires='>=3.5',
     install_requires=[],
     extras_require={
