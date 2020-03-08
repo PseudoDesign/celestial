@@ -5,6 +5,7 @@ jobs:
   celestial_tools_behave: &celestial_tools_behave_template
     docker:
       - image: circleci/python:latest
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -40,6 +41,7 @@ jobs:
   celestial_tools_deploy:
     docker:
       - image: circleci/python:latest
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -60,6 +62,7 @@ jobs:
   Documentation:
     docker:
       - image: circleci/python
+    resource_class: small
     steps:
       - checkout
       - run:
