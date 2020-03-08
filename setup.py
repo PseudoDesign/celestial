@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from os import path, getenv
 from sys import exit
 from setuptools.command.install import install
@@ -64,7 +64,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    packages=["celestial_tools"],
+    packages=find_packages(where="celestial_tools"),
     python_requires='>=3.5',
     install_requires=[],
     extras_require={
