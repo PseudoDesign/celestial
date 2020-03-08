@@ -41,8 +41,8 @@ jobs:
   celestial_tools_deploy:
     docker:
       - image: circleci/python
-      resource_class: small
-      steps:
+    resource_class: small
+    steps:
 
   # Documentation tests.
   Documentation:
