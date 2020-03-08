@@ -1,9 +1,10 @@
 version: 2.1
 
 jobs:
-  python_behave: &python_behave_template
+  # celestial_tools behave tests.
+  celestial_tools_behave: &celestial_tools_behave_template
     docker:
-      - image: circleci/python
+      - image: circleci/python:latest
     steps:
       - checkout
       - run:
@@ -18,22 +19,44 @@ jobs:
       - run:
           command: codecov
           name: Upload Tests to CodeCov
-  Python_3_5:
-    <<: *python_behave_template
+  celestial_tools_behave_3_5:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.5
-  Python_3_6:
-    <<: *python_behave_template
+  celestial_tools_behave_3_6:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.6
-  Python_3_7:
-    <<: *python_behave_template
+  celestial_tools_behave_3_7:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.7
-  Python_3_8:
-    <<: *python_behave_template
+  celestial_tools_behave_3_8:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.8
+
+  # celestial_tools release.
+  celestial_tools_deploy:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          name: Setup Deploy Environment
+          command: pip install twine
+      - run:
+          name: Verify Tag Matches Version in setup.py
+          command: python setup.py verify_tag
+      - run:
+          name: Build Release Packages
+          command: python setup.py sdist bdist_wheel
+      - run:
+          name: Deploy to Pypi
+          command: twine upload -u $PYPI_USERNAME -p $PYPI_PASSWORD dist/*
+
+
+  # Documentation tests.
   Documentation:
     docker:
       - image: circleci/python
@@ -46,12 +69,44 @@ jobs:
           command: make -C docs html
           name: Build Documention with Sphinx
 
+  # Docker image release
+
 
 workflows:
-  main:
+  celestial_tools:
     jobs:
-      - Python_3_5
-      - Python_3_6
-      - Python_3_7
-      - Python_3_8
-      - Documentation
+      # CI test builds.  Runs on all branches, but not tags.  Run the unit tests and generate the coverage reports
+      - celestial_tools_behave_3_5:
+          filters:
+            tags:
+              only: /.*/
+      - celestial_tools_behave_3_6:
+          filters:
+            tags:
+              only: /.*/
+      - celestial_tools_behave_3_7:
+          filters:
+            tags:
+              only: /.*/
+      - celestial_tools_behave_3_8:
+          filters:
+            tags:
+              only: /.*/
+      - Documentation:
+          filters:
+            tags:
+              only: /.*/
+
+      # Runs on tags that are formatted "celestial_tools_0.1.2", where the version in the tag exactly matches the version in the setup file
+      - celestial_tools_deploy:
+          requires:
+            - celestial_tools_behave_3_5
+            - celestial_tools_behave_3_6
+            - celestial_tools_behave_3_7
+            - celestial_tools_behave_3_8
+            - Documentation
+          filters:
+            tags:
+              only: /^celestial_tools_[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
