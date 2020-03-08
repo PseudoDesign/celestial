@@ -1,8 +1,8 @@
 version: 2.1
 
 jobs:
-  # Python behave tests.
-  python_behave: &python_behave_template
+  # celestial_tools behave tests.
+  celestial_tools_behave: &celestial_tools_behave_template
     docker:
       - image: circleci/python
     resource_class: small
@@ -20,25 +20,38 @@ jobs:
       - run:
           command: codecov
           name: Upload Tests to CodeCov
-  python_behave_3_5:
-    <<: *python_behave_template
+  celestial_tools_behave_3_5:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.5
-  python_behave_3_6:
-    <<: *python_behave_template
+  celestial_tools_behave_3_6:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.6
-  python_behave_3_7:
-    <<: *python_behave_template
+  celestial_tools_behave_3_7:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.7
-  python_behave_3_8:
-    <<: *python_behave_template
+  celestial_tools_behave_3_8:
+    <<: *celestial_tools_behave_template
     docker:
       - image: circleci/python:3.8
+
+  celestial_tools_build:
+    jobs:
+      - celestial_tools_behave_3_5
+      - celestial_tools_behave_3_6
+      - celestial_tools_behave_3_7
+      - celestial_tools_behave_3_8
+      - Documentation
+  # celestial_tools release.
+  celestial_tools_deploy:
+
+  # Documentation tests.
   Documentation:
     docker:
       - image: circleci/python
+    resource_class: small
     steps:
       - checkout
       - run:
@@ -48,12 +61,23 @@ jobs:
           command: make -C docs html
           name: Build Documention with Sphinx
 
+  # Docker image release
+
 
 workflows:
-  main:
+  celestial_tools:
     jobs:
-      - python_behave_3_5
-      - python_behave_3_6
-      - python_behave_3_7
-      - python_behave_3_8
-      - Documentation
+      # Runs on all branches, but not tags.  Run the unit tests and generate the coverage reports
+      - celestial_tools_build:
+          filters:  # required since `celestial_tools_deploy` has tag filters AND requires `celestial_tools_build`
+            tags:
+              only: /.*/
+      # Runs on tags that are formatted "celestial_tools_0.1.2", where the version in the tag exactly matches the version in the setup file
+      - celestial_tools_deploy:
+          requires:
+            - celestial_tools_build
+          filters:
+            tags:
+              only: /^celestial_tools_[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/
