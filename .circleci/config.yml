@@ -60,17 +60,28 @@ jobs:
 workflows:
   celestial_tools:
     jobs:
-      # Runs on all branches, but not tags.  Run the unit tests and generate the coverage reports
-      - celestial_tools_build:
-          jobs:
-            - celestial_tools_behave_3_5
-            - celestial_tools_behave_3_6
-            - celestial_tools_behave_3_7
-            - celestial_tools_behave_3_8
-            - Documentation
-          filters:  # required since `celestial_tools_deploy` has tag filters AND requires `celestial_tools_build`
+      # CI test builds.  Runs on all branches, but not tags.  Run the unit tests and generate the coverage reports
+      - celestial_tools_behave_3_5:
+          filters:
             tags:
               only: /.*/
+      - celestial_tools_behave_3_6:
+          filters:
+            tags:
+              only: /.*/
+      - celestial_tools_behave_3_7:
+          filters:
+            tags:
+              only: /.*/
+      - celestial_tools_behave_3_8:
+          filters:
+            tags:
+              only: /.*/
+      - Documentation:
+          filters:
+            tags:
+              only: /.*/
+
       # Runs on tags that are formatted "celestial_tools_0.1.2", where the version in the tag exactly matches the version in the setup file
       - celestial_tools_deploy:
           requires:
