@@ -5,6 +5,7 @@ jobs:
   python_behave: &python_behave_template
     docker:
       - image: circleci/python
+    resource_class: small
     steps:
       - checkout
       - run:
