@@ -7,7 +7,7 @@ here = path.abspath(path.dirname(__file__))
 
 VERSION_MAJOR = 0
 VERSION_MINOR = 0
-VERSION_BUGFIX = 6
+VERSION_BUGFIX = 7
 VERSION_STRING = "{}.{}.{}".format(VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX)
 
 TAG_ENV_VARIABLE = 'CIRCLE_TAG'
@@ -78,7 +78,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'celestial_dual_rootfs_update=celestial_tools.client.dual_rootfs_update:dual_rootfs_update_cmdline',
+            'celestial_dual_rootfs_update=celestial_tools.client.dual_rootfs_update_cmdline:dual_rootfs_update_cmdline',
         ],
     },
     cmdclass={
