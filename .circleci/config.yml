@@ -43,6 +43,7 @@ jobs:
       - image: circleci/python
     resource_class: small
     steps:
+      - checkout
 
   # Documentation tests.
   Documentation:
