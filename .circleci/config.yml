@@ -9,8 +9,7 @@ jobs:
       - checkout
       - run:
           name: Setup Testing Environment
-          command: |
-          pip install coverage codecov behave
+          command: pip install coverage codecov behave
       - run:
           name: Install Package
           command: pip install .[test]
