@@ -4,12 +4,13 @@ jobs:
   # celestial_tools behave tests.
   celestial_tools_behave: &celestial_tools_behave_template
     docker:
-      - image: circleci/python
+      - image: circleci/python:latest
     steps:
       - checkout
       - run:
           name: Setup Testing Environment
-          command: pip install coverage codecov behave
+          command: |
+          pip install coverage codecov behave
       - run:
           name: Install Package
           command: pip install .[test]
@@ -43,8 +44,18 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Setup Deploy Environment
+          command: pip install twine
+      - run:
           name: Verify Tag Matches Version in setup.py
           command: python setup.py verify_tag
+      - run:
+          name: Build Release Packages
+          run: python setup.py sdist bdist_wheel
+      - run:
+          name: Deploy to Pypi
+          command: twine upload -u $PYPI_USERNAME -p $PYPI_PASSWORD dist/*
+
 
   # Documentation tests.
   Documentation:
