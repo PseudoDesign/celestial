@@ -6,4 +6,4 @@ client - the target emebedded device
 server - host to serve files, etc to  the target device
 """
 
-from . import client
+from celestial_tools import client

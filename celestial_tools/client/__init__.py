@@ -1,6 +1,6 @@
 import argparse
 
-from . import rootfs
+from celestial_tools.client import rootfs
 
 
 def dual_rootfs_update(args: [str]) -> int:
