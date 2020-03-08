@@ -37,13 +37,6 @@ jobs:
     docker:
       - image: circleci/python:3.8
 
-  celestial_tools_build:
-    jobs:
-      - celestial_tools_behave_3_5
-      - celestial_tools_behave_3_6
-      - celestial_tools_behave_3_7
-      - celestial_tools_behave_3_8
-      - Documentation
   # celestial_tools release.
   celestial_tools_deploy:
 
@@ -69,6 +62,12 @@ workflows:
     jobs:
       # Runs on all branches, but not tags.  Run the unit tests and generate the coverage reports
       - celestial_tools_build:
+          jobs:
+            - celestial_tools_behave_3_5
+            - celestial_tools_behave_3_6
+            - celestial_tools_behave_3_7
+            - celestial_tools_behave_3_8
+            - Documentation
           filters:  # required since `celestial_tools_deploy` has tag filters AND requires `celestial_tools_build`
             tags:
               only: /.*/
