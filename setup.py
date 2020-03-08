@@ -44,7 +44,7 @@ class VerifyVersionCommand(install):
 setup(
     name='celestial_tools',
     version=VERSION_STRING,
-    description='A collection of tools for managing and debugging embedded software',  # Optional
+    description='A collection of tools for updating embedded software images',  # Optional
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/pseudodesign/celestial',
