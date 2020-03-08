@@ -39,9 +39,12 @@ jobs:
   # celestial_tools release.
   celestial_tools_deploy:
     docker:
-      - image: circleci/python
+      - image: circleci/python:latest
     steps:
       - checkout
+      - run:
+          name: Verify Tag Matches Version in setup.py
+          command: python setup.py verify_tag
 
   # Documentation tests.
   Documentation:
