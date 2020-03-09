@@ -87,11 +87,21 @@ workflows:
           filters:
             tags:
               only: /.*/
+          branches:
+            only: master
       - celestial_tools_behave_3_7:
           filters:
             tags:
               only: /.*/
+          branches:
+            only: master
       - celestial_tools_behave_3_8:
+          filters:
+            tags:
+              only: /.*/
+          branches:
+            only: master
+      - celestial_tools_behave_latest:
           filters:
             tags:
               only: /.*/
@@ -107,6 +117,7 @@ workflows:
             - celestial_tools_behave_3_6
             - celestial_tools_behave_3_7
             - celestial_tools_behave_3_8
+            - celestial_tools_behave_latesst
             - Documentation
           filters:
             tags:
