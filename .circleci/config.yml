@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   # celestial_tools behave tests.
-  celestial_tools_behave: &celestial_tools_behave_template
+  celestial_tools_behave_latest: &celestial_tools_behave_template
     docker:
       - image: circleci/python:latest
     resource_class: small
@@ -101,6 +101,12 @@ workflows:
               only: /.*/
             branches:
               only: master
+      - celestial_tools_behave_latest:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: master
       - Documentation:
           filters:
             tags:
@@ -113,6 +119,7 @@ workflows:
             - celestial_tools_behave_3_6
             - celestial_tools_behave_3_7
             - celestial_tools_behave_3_8
+            - celestial_tools_behave_latest
             - Documentation
           filters:
             tags:
